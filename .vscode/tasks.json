@@ -1,0 +1,38 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "type": "process",
+            "label": "C/C++: g+ build active file",
+            "command": "C:\\w64devkit\\bin\\g++.exe",
+            "args": [
+                "-g",
+                "-std=c++17",
+                "-static",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-I${workspaceFolder}/include",
+                "-L${workspaceFolder}/lib",
+                "${workspaceFolder}/src/stbimage.c",
+                "${workspaceFolder}/src/glad.c",
+                "${workspaceFolder}/src/main.cpp",
+                "-lglfw3",
+                "-lgdi32",
+                "-lopengl32",
+                "-o",
+                "${workspaceFolder}/main.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "compiler: C:\\w64devkit\\bin\\g++.exe"
+        }
+    ]
+}
