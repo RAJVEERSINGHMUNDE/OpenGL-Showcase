@@ -3,7 +3,49 @@
 	"tasks": [
         {
             "type": "process",
-            "label": "C/C++: g+ build active file",
+            "label": "build_opengl",
+            "command": "C:\\w64devkit\\bin\\g++.exe",
+            "args": [
+                "-g",
+                "-std=c++17",
+                "-static",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-I${workspaceFolder}\\include",
+                "-L${workspaceFolder}\\lib",
+                "${workspaceFolder}\\src\\stbimage.c",
+                "${workspaceFolder}\\src\\glad.c",
+                "${workspaceFolder}\\src\\main.cpp",
+                "-lglfw3",
+                "-lgdi32",
+                "-lopengl32",
+                "-lm",
+                "-o",
+                "${workspaceFolder}\\main.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "detail": "Build OpenGL project with g++ compiler"
+        },
+        {
+            "type": "process",
+            "label": "C/C++: g++ build OpenGL project",
             "command": "C:\\w64devkit\\bin\\g++.exe",
             "args": [
                 "-g",
@@ -19,6 +61,7 @@
                 "-lglfw3",
                 "-lgdi32",
                 "-lopengl32",
+                "-lm",
                 "-o",
                 "${workspaceFolder}/main.exe"
             ],
@@ -28,11 +71,53 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
             },
-            "detail": "compiler: C:\\w64devkit\\bin\\g++.exe"
+            "detail": "Build OpenGL project with g++ compiler"
+        },
+        {
+            "type": "shell",
+            "label": "Run OpenGL Application",
+            "command": "${workspaceFolder}/main.exe",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new"
+            },
+            "dependsOn": "build_opengl",
+            "detail": "Run the compiled OpenGL application"
+        },
+        {
+            "type": "shell",
+            "label": "Clean Build Files",
+            "command": "rm",
+            "args": [
+                "-f",
+                "main.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared"
+            },
+            "detail": "Remove compiled executable files"
         }
     ]
 }
